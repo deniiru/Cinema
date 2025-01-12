@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Customers {
-    private static final String DATA_FILE = "C:/Users/Rujoiu Cristina/Desktop/Cinema/Cinema/date.txt";
+    private static final String DATA_FILE = "date.txt";
     private ArrayList<Customer> customers;
 
     public Customers() {

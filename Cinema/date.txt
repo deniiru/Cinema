@@ -14,6 +14,31 @@
       ],
       "name": "Denisa",
       "phoneNumber": "0790 654 625"
+    },
+    {
+      "bookedTickets": [],
+      "name": "Florina",
+      "phoneNumber": "0712 452 265"
+    },
+    {
+      "bookedTickets": [],
+      "name": "Florina",
+      "phoneNumber": "0760 654 123"
+    },
+    {
+      "bookedTickets": [
+        {
+          "date": "Monday",
+          "movieName": "Titanic",
+          "roomName": "1",
+          "seat": {
+            "row": 1,
+            "column": 2
+          }
+        }
+      ],
+      "name": "Florina",
+      "phoneNumber": "0790 526 356"
     }
   ]
 }

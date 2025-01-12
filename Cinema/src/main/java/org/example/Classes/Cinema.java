@@ -2,7 +2,6 @@ package org.example.Classes;
 
 import org.example.Interfaces.CinemaManagement;
 
-import java.awt.desktop.SystemEventListener;
 import java.io.*;
 import java.util.*;
 
@@ -11,20 +10,17 @@ import com.google.gson.GsonBuilder;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.File;
-import java.io.IOException;
 
 public class Cinema implements CinemaManagement {
     private List<Day> days;
     private List<Room> rooms;
-    private static final String CINEMA_DATA_FILE = "C:/Users/Rujoiu Cristina/Desktop/facultate/Anul 2/MIP/MIP_final_project/src/cinema_data.txt";
+    private static final String CINEMA_DATA_FILE = "cinema_data.txt";
 
     // Constructor
     public Cinema() {
-        days = new ArrayList<>();   // Initialize the list of days
-        rooms = new ArrayList<>();  // Initialize the list of rooms
+        days = new ArrayList<>();
+        rooms = new ArrayList<>();
 
-        // Initialize days with the names of the days of the week
         String[] dayNames = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
         for (String dayName : dayNames) {
             days.add(new Day(dayName));
