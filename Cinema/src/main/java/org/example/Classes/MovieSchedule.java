@@ -37,9 +37,9 @@ public class MovieSchedule implements Schedulable {
     public void displaySchedule() {
         Map<String, Room> sortedPlayTime = new TreeMap<>(playTime);
 
-        System.out.println("Schedule for movie: " + movie.getTitle());
+        System.out.print(movie.getTitle()+ ":  ");
         for (Map.Entry<String, Room> entry : sortedPlayTime.entrySet()) {
-            System.out.println("Time: " + entry.getKey() + " | Room: " + entry.getValue().getName());
+            System.out.print(entry.getKey() + "  |  ");
         }
     }
 
@@ -89,5 +89,10 @@ public class MovieSchedule implements Schedulable {
 
     public Map<String, Room> getPlayTime() {
         return playTime;
+    }
+
+    @Override
+    public void displayMovieRoom(String time){
+        playTime.get(time).displaySeats();
     }
 }

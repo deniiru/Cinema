@@ -17,4 +17,5 @@ public interface CinemaManagement {
 
     void saveToFile();
     void loadFromFile();
+    void viewMovieRoom(String day, String movieName, String playTime);
 }

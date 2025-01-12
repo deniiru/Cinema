@@ -2,6 +2,7 @@ package org.example.Classes;
 
 import org.example.Interfaces.CinemaManagement;
 
+import java.awt.desktop.SystemEventListener;
 import java.io.*;
 import java.util.*;
 
@@ -102,8 +103,9 @@ public class Cinema implements CinemaManagement {
 
         System.out.println("\nSchedule:");
         for (int i = 0; i < days.size(); i++) {
-            System.out.println("Day " + (i + 1) + ":");
+            System.out.println(days.get(i).getName());
             days.get(i).displaySchedules();
+            System.out.println("------------------------------------------------------------------------------");
         }
     }
 
@@ -133,11 +135,12 @@ public class Cinema implements CinemaManagement {
     }
 
     public Seat chooseSeat (Room room){
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Choose seat:");
         System.out.println("Enter row ");
-        int row = 0;
+        int row = scanner.nextInt();
         System.out.println("Enter col ");
-        int col = 0;
+        int col = scanner.nextInt();
         return new Seat(row, col);
     }
     public Room findRoom (String date, String movieName, String playTime)
@@ -158,8 +161,8 @@ public class Cinema implements CinemaManagement {
     public void saveToFile() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create(); // Create Gson instance with pretty printing
         try (FileWriter writer = new FileWriter(CINEMA_DATA_FILE)) {
-            gson.toJson(this, writer); // Serialize 'this' (Cinema object) to JSON and write to the file
-            System.out.println("Cinema information saved to " + CINEMA_DATA_FILE);
+            gson.toJson(this, writer);
+            System.out.println("Cinema information saved");
         } catch (IOException e) {
             System.err.println("Failed to save cinema information: " + e.getMessage());
         }
@@ -176,10 +179,20 @@ public class Cinema implements CinemaManagement {
             this.days = loadedCinema.days;
             this.rooms = loadedCinema.rooms;
 
-            System.out.println("Cinema information loaded successfully from " + CINEMA_DATA_FILE);
+            System.out.println("Cinema information loaded successfully");
         } catch (IOException e) {
             System.err.println("Failed to load cinema information: " + e.getMessage());
         }
     }
 
+    @Override
+    public void viewMovieRoom(String day, String movieName, String playTime)
+    {
+        for (Day day1 : days) {
+            if (day1.getName().equals(day))
+            {
+                day1.displayMovieRoom(movieName, playTime);
+            }
+        }
+    }
 }

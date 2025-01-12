@@ -7,4 +7,5 @@ public interface Schedulable {
     void displaySchedule();
 
     Room isPlaying(String playTime);
+    void displayMovieRoom(String time);
 }

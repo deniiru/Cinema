@@ -34,9 +34,9 @@ public class Day {
 
     // Method to display all schedules
     public void displaySchedules() {
-        System.out.println("Schedule for the day:");
         for (MovieSchedule schedule : schedules) {
             schedule.displaySchedule();
+            System.out.println();
         }
     }
 
@@ -49,6 +49,7 @@ public class Day {
             if (schedule.getMovie().getTitle().equals(movie)) {
                 schedules.remove(schedule);
                 System.out.println("Movie '" + movie + "' removed from the schedule.");
+                return;
             }
         }
     }
@@ -87,6 +88,14 @@ public class Day {
             }
         }
 
+    }
+
+    public void displayMovieRoom(String movieName, String playTime){
+        for (MovieSchedule schedule : schedules) {
+            if (schedule.getMovie().getTitle().equals(movieName)) {
+                schedule.displayMovieRoom(playTime);
+            }
+        }
     }
 
 }
