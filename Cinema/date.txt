@@ -1,0 +1,19 @@
+{
+  "customers": [
+    {
+      "bookedTickets": [
+        {
+          "date": "Friday",
+          "movieName": "Batman",
+          "roomName": "2",
+          "seat": {
+            "row": 1,
+            "column": 1
+          }
+        }
+      ],
+      "name": "Denisa",
+      "phoneNumber": "0790 654 625"
+    }
+  ]
+}

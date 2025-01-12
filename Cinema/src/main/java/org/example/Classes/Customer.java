@@ -16,11 +16,21 @@ public class Customer extends Person {
 
     @Override
     public void displayDetails() {
-        System.out.println("Customer Name: " + name + ", ID: " + phoneNumber);
+        System.out.println("Customer Name: " + name + ", phone: " + phoneNumber);
+    }
 
-        for ( Ticket ticket : bookedTickets ) {
-            ticket.display();
-        }
+    @Override
+    public String getName() {
+        return this.name;
+    }
+
+    public ArrayList<Ticket> getBookedTickets() {
+        return bookedTickets;
+    }
+
+    @Override
+    public String getPhone() {
+        return this.phoneNumber;
     }
 }
 

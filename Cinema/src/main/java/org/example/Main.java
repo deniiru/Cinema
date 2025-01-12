@@ -1,9 +1,6 @@
 package org.example;
 
-import org.example.Classes.Cinema;
-import org.example.Classes.Customer;
-import org.example.Classes.Movie;
-import org.example.Classes.Ticket;
+import org.example.Classes.*;
 import org.example.Interfaces.CinemaManagement;
 
 import java.util.Scanner;
@@ -12,6 +9,8 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         CinemaManagement cinema = new Cinema();
+        Customers customers = new Customers();
+        customers.loadFromFile();
         cinema.loadFromFile();
 
         boolean exit = false;
@@ -26,11 +25,16 @@ public class Main {
                 case 2: addRoom(scanner, cinema); break;
                 case 3: addMovieToDay(scanner, cinema); break;
                 case 4: addPlayTimeToDay(scanner, cinema);break;
-                case 5: bookTicket(scanner, cinema); break;
-                case 6: erasePlayTime(scanner, cinema); break;
-                case 7: eraseMovie(scanner, cinema); break;
-                case 8: viewRoomForMovie(scanner, cinema); break;
-                case 9:
+
+                case 5: erasePlayTime(scanner, cinema); break;
+                case 6: eraseMovie(scanner, cinema); break;
+                case 7: viewRoomForMovie(scanner, cinema); break;
+
+                case 8: bookTicket(scanner, cinema, customers); break;
+                case 9: customers.displayAllCustomerNames(); break;
+                case 10: printCustomerTickets(scanner, customers); break;
+
+                case 11:
                     exit = true;
                     System.out.println("Exiting Cinema Management. Goodbye!");
                     break;
@@ -45,17 +49,19 @@ public class Main {
     }
 
     private static void displayMenu() {
-
         System.out.println("\nCinema Management Menu:");
         System.out.println("1. Display Cinema Details");
         System.out.println("2. Add a Room");
         System.out.println("3. Add a Movie to a Day");
         System.out.println("4. Add a Play Time to a Day");
-        System.out.println("5. Book a Ticket");
-        System.out.println("6. Erase Movie Play Time");
-        System.out.println("7. Erase Movie");
-        System.out.println("8. View Room for a Movie");
-        System.out.println("9. Exit");
+
+        System.out.println("5. Erase Movie Play Time");
+        System.out.println("6. Erase Movie");
+        System.out.println("7. View Room for a Movie");
+        System.out.println("8. Book a Ticket");
+        System.out.println("9. Customer Names");
+        System.out.println("10.Customer tickets");
+        System.out.println("11. Exit");
         System.out.print("Choose an option (1-9): ");
     }
 
@@ -116,10 +122,9 @@ public class Main {
         String dayName = scanner.nextLine();
 
         cinema.addPlayTimeToDay(movieName, playTime, roomName, dayName);
-        System.out.println("Play time added successfully.");
     }
 
-    private static void bookTicket(Scanner scanner, CinemaManagement cinema) {
+    private static void bookTicket(Scanner scanner, CinemaManagement cinema, Customers customers) {
         scanner.nextLine();
         System.out.print("Enter customer name: ");
         String customerName = scanner.nextLine();
@@ -128,8 +133,9 @@ public class Main {
         String customerPhone = scanner.nextLine();
 
         Customer customer = new Customer(customerName, customerPhone);
+        customers.addCustomer(customer);
 
-        System.out.print("Enter day: ");
+        System.out.print("Enter movie information\n Enter day: ");
         String day = scanner.nextLine();
 
         System.out.print("Enter movie title: ");
@@ -145,6 +151,7 @@ public class Main {
         } else {
             System.out.println("No tickets available.");
         }
+        customers.saveToFile();
     }
 
     private static void erasePlayTime(Scanner scanner, CinemaManagement cinema) {
@@ -186,5 +193,12 @@ public class Main {
         String playTime = scanner.nextLine();
 
         cinema.viewMovieRoom(dayName, movieName, playTime);
+    }
+
+    private static void printCustomerTickets(Scanner scanner, Customers customers) {
+        scanner.nextLine();
+        System.out.print("Enter customer name: ");
+        String customerName = scanner.nextLine();
+        customers.displayTicketsForCustomer(customerName);
     }
 }

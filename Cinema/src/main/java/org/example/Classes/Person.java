@@ -10,4 +10,7 @@ abstract class Person {
     }
 
     public abstract void displayDetails();
+
+    public abstract String getName();
+    public abstract String getPhone();
 }
